@@ -1,0 +1,9 @@
+﻿@model Aula4.Models.Pessoa;
+@{
+    ViewData["Title"] = "Dados da pessoa";
+}
+
+<div class="text-center">
+    <p>Nome: @Html.DisplayFor(banana => banana.Nome)</p>
+    <p>Idade: @Html.DisplayFor(model => model.Idade)</p>
+</div>
