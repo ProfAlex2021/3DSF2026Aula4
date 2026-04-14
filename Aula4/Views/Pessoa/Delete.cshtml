@@ -1,11 +1,12 @@
 ﻿@model Aula4.Models.Pessoa
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Delete";
 }
 
-<h1>Details</h1>
+<h1>Delete</h1>
 
+<h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Pessoa</h4>
     <hr />
@@ -23,7 +24,10 @@
             @Html.DisplayFor(model => model.Idade)
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Index">Back to List</a>
+    
+    <form asp-action="Delete">
+        @Html.AntiForgeryToken()
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
 </div>

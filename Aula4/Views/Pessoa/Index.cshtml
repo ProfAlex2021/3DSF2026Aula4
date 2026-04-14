@@ -31,9 +31,9 @@
                 @Html.DisplayFor(modelItem => item.Idade)
             </td>
             <td>
-                @Html.ActionLink("✏️", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("✏️", "Edit", new { id = ((List<Pessoa>)Model).IndexOf(item) }) |
                     @Html.ActionLink("👁️", "Details", new { index = ((List<Pessoa>)Model).IndexOf(item) }) |
-                @Html.ActionLink("🗑️", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("🗑️", "Delete", new { id = ((List<Pessoa>)Model).IndexOf(item) })
             </td>
         </tr>
 }

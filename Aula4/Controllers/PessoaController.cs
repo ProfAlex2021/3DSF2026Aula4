@@ -27,7 +27,7 @@ namespace Aula4.Controllers
             {
                 lista = JsonConvert.DeserializeObject<List<Pessoa>>(pessoas);
                 if (lista.Count == 0)
-                    IniciarLista();
+                    lista = IniciarLista();
             }
 
             return lista;
@@ -71,7 +71,8 @@ namespace Aula4.Controllers
         // GET: PessoaController/Details/5
         public ActionResult Details(int index)
         {
-            return View(Pessoa.Lista[index]);
+            var lista = LerLista();
+            return View(lista[index]);
         }
 
         // GET: PessoaController/Create
@@ -101,7 +102,7 @@ namespace Aula4.Controllers
         // GET: PessoaController/E-dit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(LerLista()[id]);
         }
 
         // POST: PessoaController/Edit/5
@@ -113,7 +114,7 @@ namespace Aula4.Controllers
             {
                 var lista = LerLista();
                 lista[id] = pessoa;
-
+                AtualizarLista(lista);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -125,16 +126,20 @@ namespace Aula4.Controllers
         // GET: PessoaController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var lista = LerLista();
+            return View(lista[id]);
         }
 
         // POST: PessoaController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Pessoa pessoa)
         {
             try
             {
+                var lista = LerLista();
+                lista.RemoveAt(id);
+                AtualizarLista(lista);
                 return RedirectToAction(nameof(Index));
             }
             catch
